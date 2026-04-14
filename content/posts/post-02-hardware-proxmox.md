@@ -172,7 +172,6 @@ Post 3 covers everything about the network and storage configuration:
 - Ceph cluster initialization, OSD configuration, and pool creation
 - Standing up a virtual pfSense router on the VM traffic VLAN
 
-The networking setup is where most of the complexity lives — and where most of my initial config attempts failed before I got it right. That made for good notes.
 
 ---
 
