@@ -77,8 +77,8 @@ And honestly, having a public record of what I'm learning keeps me accountable t
 
 The hardware is racked and the switch is on the way, next post covers the physical setup: what I'm working with, how it's configured, and the decisions I made on hardware and networking before a single VM was provisioned.
 
-If you've done this before, [reach out](#) — I'm interested in what you'd do differently and what I'm probably about to get wrong.
+If you've done this before, [reach out](mailto:matt.virtually@gmail.com) — I'm interested in what you'd do differently and what I'm probably about to get wrong.
 
 ---
 
-*This is post 1 of an ongoing series. Start here or jump to the [series index](#).*
+*This is post 1 of an ongoing series. Start here or jump to the [series index](https://mattvirtually-source.github.io/homelab-blog/).*
