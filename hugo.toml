@@ -1,0 +1,46 @@
+baseURL = "https://mattvirtually-source.github.io/homelab-blog/"
+# If your repo is NOT named username.github.io, use:
+# baseURL = "https://YOUR-GITHUB-USERNAME.github.io/REPO-NAME/"
+
+languageCode = "en-us"
+title = "The Recursive Lab"          # change to your blog name
+theme = "PaperMod"
+paginate = 10
+
+[params]
+  author = "Virtually Matt"
+  description = "Home lab adventures in virtualization and container orchestration."
+  ShowReadingTime = true
+  ShowShareButtons = false
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  ShowToc = true
+  TocOpen = false
+  ShowSeriesNav = true
+
+[params.homeInfoParams]
+  Title = "The Recursive Lab"
+  Content = "Learning Modern DevOps from the ground up — one broken config at a time."
+
+[[params.socialIcons]]
+  name = "github"
+  url = "https://github.com/mattvirtually-source"
+
+[taxonomies]
+  tag = "tags"
+  series = "series"
+
+[menu]
+  [[menu.main]]
+    name = "Posts"
+    url = "/posts/"
+    weight = 1
+  [[menu.main]]
+    name = "Tags"
+    url = "/tags/"
+    weight = 2
+  [[menu.main]]
+    name = "Series"
+    url = "/series/"
+    weight = 3
