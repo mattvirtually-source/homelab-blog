@@ -73,7 +73,7 @@ I'll be honest about what I gave up:
 
 Each Nucbox M5 Ultra ships with one occupied M.2 slot and one open. I ordered three additional 512 GB NVMe drives, one per node, and installed them before the first boot.
 
-The purpose of that second drive will become clear in the networking and storage post, but the short version: Ceph. When I configure Ceph as the shared storage backend across these three nodes, each node contributes one or more OSDs (Object Storage Daemons). I partitioned the boot drive to give ~400 GB of space for the first OSD, but I wanted to give myself plenty of room for future growth hence the added 512 GB M.2 as a second OSD per node.
+The purpose of that second drive will become clear in the networking and storage post, but the short version: Ceph. When I configure Ceph as the shared storage backend across these three nodes, each node contributes one or more OSDs (Object Storage Daemons). I partitioned the boot drive to give ~400 GB of space for the first OSD. The second 512 GB M.2 adds a dedicated OSD per node, with headroom to grow the pool later.
 
 ---
 
@@ -86,7 +86,7 @@ Compute without appropriate networking is just three isolated boxes. The switch 
 - Managed, VLAN-aware
 - Fanless
 
-The 2.5 GbE match with the Nucbox NICs is intentional, there's no bottleneck between the nodes and the switch, and 2.5 GbE gives Ceph replication traffic enough headroom to operate without competing with VM traffic for bandwidth. The 10 GbE uplink is currently connected to my home router for internet access.
+The 2.5 GbE match with the Nucbox NICs is intentional — there's no bottleneck between the nodes and the switch, and 2.5 GbE gives Ceph replication traffic enough headroom to operate without competing with VM traffic for bandwidth. The 10 GbE uplink is currently connected to my home router for internet access.
 
 The switch is configured through UniFi Network Controller, which I plan on running as a VM on one of the Proxmox nodes. That's slightly chicken-and-egg on the first boot, but in practice you just configure the VLANs from a locally connected laptop first, adopt the switch, and then migrate controller management to the VM once the cluster is up.
 
@@ -157,7 +157,7 @@ node02 (192.168.x.12) — Proxmox 9.1, 76 GB partitioned, 424 GB free, 512 GB fr
 node03 (192.168.x.13) — Proxmox 9.1, 76 GB partitioned, 424 GB free, 512 GB free
 ```
 
-Three nodes, all reachable on the management network, none yet clustered. Storage sits idle. The switch is physically connected but VLANs are not configured. The NIC bonding and bridge configuration that Proxmox needs for a multi-VLAN network is a blank page.
+Three nodes, all reachable on the management network, none yet clustered. Storage sits idle. The switch is physically connected but VLANs are not configured. The bridge and VLAN configuration that Proxmox needs for a multi-VLAN network is a blank page.
 
 That's the next post.
 
