@@ -2,6 +2,7 @@
 title: "The Vision: Why I'm Building a Home Lab"
 date: 2026-04-09
 draft: false
+weight: 1
 series: ["Series 1 — Building the Foundation"]
 tags: ["homelab", "intro", "virtualization", "kubernetes"]
 summary: "The what, the why, and the roadmap for a home lab built to learn virtualization and container orchestration from the ground up."

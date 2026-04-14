@@ -2,6 +2,7 @@
 title: "The Hardware: Three Mini PCs, a Switch, and a Plan"
 date: 2026-04-14
 draft: false
+weight: 2
 series: ["Series 1 — Building the Foundation"]
 tags: ["homelab", "hardware", "proxmox", "gmktec", "ceph", "ubiquiti"]
 summary: "Why I chose mini PCs over rack servers, how I configured Proxmox across three nodes with Ceph in mind from day one, and what the hardware stack looks like before networking enters the picture."
