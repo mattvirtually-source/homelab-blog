@@ -12,9 +12,9 @@ TocOpen: false
 
 I've worked with enterprise virtualization my entire IT career. Starting with Citrix XenServer in the small company I started in, later progressing to VMware, and even a stint with Hyper-V as a professional services engineer. I even know how to manage these environments adhering to modern DevOps practices (IaC). 
 
-After progressing out of operational IT in 2019, leaving my Enterprise Engineer role at a large law firm for a Technical Account Manager role at VMware, there were just technologies that I did not get a chance to touch. A lot of the DevOps I had practice with was scripting (PowerShell, Python) based leveraging Azure DevOps to automate the process. I didn't get to experience technologies like Terraform, or Ansible. And as more applications make the shift from VMs to Containers I have yet to experience on Kubernetes.
+After progressing out of operational IT in 2019, leaving my Enterprise Engineer role at a large law firm for a Technical Account Manager role at VMware, there were just technologies that I did not get a chance to touch. A lot of the DevOps I had practice with was scripting (PowerShell, Python) based leveraging Azure DevOps to automate the process. I didn't get to experience technologies like Terraform, or Ansible. And as more applications make the shift from VMs to Containers I have yet to gain experience on Kubernetes. Add on tools around CI/CD and I have a lot to learn!
 
-As an Enterprise Solution Engineer at SHI I make it a point to understand these technologies and their use at a level that I'm beneficial to my customers in more technical conversations. I know their place in the tech stack. I have a high level understanding of how these technologies are leveraged. But I've always been a hands on learner, and my hands on experience in these areas is lacking.
+As an Enterprise Solution Engineer at SHI I make it a point to understand these technologies and their use at a level that I'm beneficial to my customers in more technical conversations. I know their place in the tech stack. I have a high level understanding of how these technologies are leveraged. But I've always been a hands on learner, and my hands on experience in these areas is lacking. 
 
 That gap bothered me enough to do something about it. So I'm building a home lab.
 
@@ -45,11 +45,11 @@ Phase 1 covers:
 
 ### Phase 2: Hypervisor
 
-I've spent time with VMware ESXi/vSphere, Microsoft Hyper-V, and Citrix XenServer. The obvious next step would be to lean on one of those. I have VMUG licensing for VMware and XenServer experience that maps directly to XCP-ng. But the point of this lab is to learn things I haven't touched, not to get comfortable with things I already know.
+I've spent time with VMware ESXi/vSphere, Microsoft Hyper-V, and Citrix XenServer. The obvious next step would be to lean on one of those. I can probably get VMUG licensing for VMware (just renewed my VCP) and my XenServer experience that maps directly to XCP-ng. But the point of this lab is to learn things I haven't touched, not to get comfortable with things I already know.
 
 Proxmox VE is the one major hypervisor I haven't run. It's KVM under the hood, which matters as I move into automation and container orchestration. Terraform has a solid Proxmox provider, Ansible integrates cleanly, and every Kubernetes platform I plan to evaluate has been documented running on Proxmox extensively. It gives me a stable, well-documented foundation without locking me into a commercial licensing model.
 
-This isn't a hypervisor evaluation series. Proxmox is the platform, and everything else gets built on top of it.
+This isn't a hypervisor evaluation series. In the future I might look at other Hypervisors but for now Proxmox is the platform, and everything else gets built on top of it.
 
 
 ### Phase 3: Automation, IaC, and Kubernetes
@@ -78,7 +78,7 @@ And honestly, having a public record of what I'm learning keeps me accountable t
 
 The hardware is racked and the switch is on the way, next post covers the physical setup: what I'm working with, how it's configured, and the decisions I made on hardware and networking before a single VM was provisioned.
 
-If you've done this before, [reach out](#). I'm interested in what you'd do differently and what I'm probably about to get wrong.
+If you've done this before, [reach out](mailto:matt.gladding@gmail.com). I'm interested in what you'd do differently and what I'm probably about to get wrong.
 
 ---
 
