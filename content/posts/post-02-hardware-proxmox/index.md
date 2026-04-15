@@ -9,7 +9,7 @@ showToc: true
 TocOpen: false
 ---
 
-The first decision you make in a home lab tends to be the one that constrains everything else: what hardware are you running this on? For me, that decision sat at the intersection of three competing constraints — compute density, power consumption, and budget. The answer ended up being three small boxes on a small rack, and I don't regret it.
+The first decision you make in a home lab tends to be the one that constrains everything else: what hardware are you running this on? For me, that decision sat at the intersection of three competing constraints: compute density, power consumption, and budget. The answer ended up being three small boxes on a small rack, and I don't regret it.
 
 ---
 
@@ -39,13 +39,13 @@ After a few weeks of research, I landed on the [GMKtec NucBox M5 Ultra](https://
 | Wireless | WiFi 6E + Bluetooth 5.2 (unused in this context) |
 | TDP | 15W base |
 
-The spec that closed the deal was the dual 2.5 GbE NICs. Most mini PCs at this price point give you a single NIC. Having two is what makes the networking design I had in mind actually workable — one NIC for general cluster and management traffic, one dedicated to storage. More on that in the next post.
+The spec that closed the deal was the dual 2.5 GbE NICs. Most mini PCs at this price point give you a single NIC. Having two is what makes the networking design I had in mind actually workable. One NIC handles general cluster and management traffic, the other is dedicated to storage. More on that in the next post.
 
 ### The CPU: What Matters for Virtualization
 
 The Ryzen 7 7730U is an 8-core, 16-thread Zen 3 processor. It supports AMD-V (AMD's hardware virtualization extension, equivalent to Intel VT-x), and IOMMU for PCI passthrough when enabled in BIOS.
 
-One thing worth knowing before you boot a fresh Proxmox install on any AMD consumer CPU: **SVM Mode is disabled by default in the BIOS**. Without it, KVM virtualization won't work. The setting is buried under Advanced → CPU Configuration on the M5 Ultra's firmware. It took me longer to find it than it should have — it's labeled "SVM Mode" rather than anything that immediately reads as "virtualization."
+One thing worth knowing before you boot a fresh Proxmox install on any AMD consumer CPU: **SVM Mode is disabled by default in the BIOS**. Without it, KVM virtualization won't work. The setting is buried under Advanced → CPU Configuration on the M5 Ultra's firmware. It took me longer to find it than it should have. It's labeled "SVM Mode" rather than anything that immediately reads as "virtualization."
 
 Enable SVM Mode before you do anything else. Then verify it from the Proxmox shell:
 
@@ -86,7 +86,7 @@ Compute without appropriate networking is just three isolated boxes. The switch 
 - Managed, VLAN-aware
 - Fanless
 
-The 2.5 GbE match with the Nucbox NICs is intentional — there's no bottleneck between the nodes and the switch, and 2.5 GbE gives Ceph replication traffic enough headroom to operate without competing with VM traffic for bandwidth. The 10 GbE uplink is currently connected to my home router for internet access.
+The 2.5 GbE match with the Nucbox NICs is intentional, with no bottleneck between the nodes and the switch, and 2.5 GbE gives Ceph replication traffic enough headroom to operate without competing with VM traffic for bandwidth. The 10 GbE uplink is currently connected to my home router for internet access.
 
 The switch is configured through UniFi Network Controller, which I plan on running as a VM on one of the Proxmox nodes. That's slightly chicken-and-egg on the first boot, but in practice you just configure the VLANs from a locally connected laptop first, adopt the switch, and then migrate controller management to the VM once the cluster is up.
 
@@ -104,7 +104,7 @@ By default, the Proxmox installer will consume the entire disk. On a 500 GB driv
 
 Instead, I used the installer's advanced disk options to set `hdsize` to **76 GB**. This tells the installer to only partition and use the first 76 GB of the drive, leaving the remaining ~400 GB as unallocated free space on the disk. That free space will be partitioned separately when I configure Ceph OSDs, keeping the Proxmox LVM volume group clean and isolated from the Ceph stack.
 
-The Proxmox installer's `hdsize` setting is found in the advanced options on the disk configuration screen — it's not prominently advertised, but it's exactly the right tool for this.
+The Proxmox installer's `hdsize` setting is found in the advanced options on the disk configuration screen. It's not prominently advertised, but it's exactly the right tool for this.
 
 After setting `hdsize=76`, the installer creates:
 - EFI partition: ~512 MB
@@ -142,13 +142,13 @@ apt update && apt full-upgrade -y
 apt install -y htop iotop net-tools ethtool vim
 ```
 
-Repeat on all three nodes. I keep them named simply: `node01`, `node02`, `node03` — with matching hostnames and sequential IPs on the management network. Simple naming goes a long way in a lab where you're SSHing into things constantly.
+Repeat on all three nodes. I keep them named simply: `node01`, `node02`, `node03`, with matching hostnames and sequential IPs on the management network. Simple naming goes a long way in a lab where you're SSHing into things constantly.
 
 ---
 
 ## The Rack
 
-{{< figure src="/homelab-blog/images/labrack.jpg" alt="Three GMKtec NucBox M5 Ultra nodes and Ubiquiti 2.5 GbE switch" caption="Three GMKtec NucBox M5 Ultra nodes and the Ubiquiti USW-Flex-2.5G. Small footprint, enough compute to run a real cluster." >}}
+{{< figure src="labrack.jpg" alt="Three GMKtec NucBox M5 Ultra nodes and Ubiquiti 2.5 GbE switch" caption="Three GMKtec NucBox M5 Ultra nodes and the Ubiquiti USW-Flex-2.5G. Small footprint, enough compute to run a real cluster." >}}
 
 ---
 
@@ -157,9 +157,9 @@ Repeat on all three nodes. I keep them named simply: `node01`, `node02`, `node03
 At the end of this phase, here's what exists:
 
 ```
-node01 (192.168.x.11) — Proxmox 9.1, 76 GB partitioned, 424 GB free, 512 GB free
-node02 (192.168.x.12) — Proxmox 9.1, 76 GB partitioned, 424 GB free, 512 GB free
-node03 (192.168.x.13) — Proxmox 9.1, 76 GB partitioned, 424 GB free, 512 GB free
+node01 (192.168.x.11): Proxmox 9.1, 76 GB partitioned, 424 GB free, 512 GB free
+node02 (192.168.x.12): Proxmox 9.1, 76 GB partitioned, 424 GB free, 512 GB free
+node03 (192.168.x.13): Proxmox 9.1, 76 GB partitioned, 424 GB free, 512 GB free
 ```
 
 Three nodes, all reachable on the management network, none yet clustered. Storage sits idle. The switch is physically connected but VLANs are not configured. The bridge and VLAN configuration that Proxmox needs for a multi-VLAN network is a blank page.
@@ -177,8 +177,8 @@ Post 3 covers everything about the network and storage configuration:
 - Ceph cluster initialization, OSD configuration, and pool creation
 - Standing up a virtual pfSense router on the VM traffic VLAN
 
-The networking setup is where most of the complexity lives — and where most of my initial config attempts failed before I got it right. That made for good notes.
+The networking setup is where most of the complexity lives, and where most of my initial config attempts failed before I got it right. That made for good notes.
 
 ---
 
-*This is post 2 of an ongoing series. [Start from the beginning](https://mattvirtually-source.github.io/homelab-blog/posts/post-01-the-vision/) or [view all posts in this series](https://mattvirtually-source.github.io/homelab-blog/posts/).*
+*This is post 2 of an ongoing series. [Start from the beginning](/posts/post-01-the-vision/) or [view all posts in this series](/posts/).*
