@@ -2,7 +2,6 @@
 title: "The Hardware: Three Mini PCs, a Switch, and a Plan"
 date: 2026-04-14
 draft: false
-weight: 2
 series: ["Series 1 — Building the Foundation"]
 tags: ["homelab", "hardware", "proxmox", "gmktec", "ceph", "ubiquiti"]
 summary: "Why I chose mini PCs over rack servers, how I configured Proxmox across three nodes with Ceph in mind from day one, and what the hardware stack looks like before networking enters the picture."
@@ -129,7 +128,21 @@ The second M.2 drive (512 GB) was left completely unpartitioned at this stage. I
 
 ### Post-Install Basics
 
-I keep them named simply: `node01`, `node02`, `node03` with matching hostnames and sequential IPs on the management network. Simple naming goes a long way in a lab where you're SSHing into things constantly.
+After the three-node install, a few immediate housekeeping steps before touching anything else.
+
+**Switch the package repository.** Fresh Proxmox installs point at the Enterprise repository by default, which requires a paid subscription. Without a valid subscription key, every `apt update` throws a 401 error. Fix this through the web UI: navigate to the node in the left panel → **Updates** → **Repositories**. Disable the enterprise repository entry, then click **Add** and select **No-Subscription** from the list. Repeat on each node.
+
+With the repository sorted, update and grab a few useful tools from the shell:
+
+```bash
+# Update
+apt update && apt full-upgrade -y
+
+# Install useful tools
+apt install -y htop iotop net-tools ethtool vim
+```
+
+Repeat on all three nodes. I keep them named simply: `node01`, `node02`, `node03` — with matching hostnames and sequential IPs on the management network. Simple naming goes a long way in a lab where you're SSHing into things constantly.
 
 ---
 
@@ -158,6 +171,7 @@ Post 3 covers everything about the network and storage configuration:
 - Ceph cluster initialization, OSD configuration, and pool creation
 - Standing up a virtual pfSense router on the VM traffic VLAN
 
+The networking setup is where most of the complexity lives — and where most of my initial config attempts failed before I got it right. That made for good notes.
 
 ---
 
