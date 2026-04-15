@@ -146,6 +146,12 @@ Repeat on all three nodes. I keep them named simply: `node01`, `node02`, `node03
 
 ---
 
+## The Rack
+
+{{< figure src="/images/labrack.jpg" alt="Three GMKtec NucBox M5 Ultra nodes and Ubiquiti 2.5 GbE switch" caption="Three GMKtec NucBox M5 Ultra nodes and the Ubiquiti USW-Flex-2.5G. Small footprint, enough compute to run a real cluster." >}}
+
+---
+
 ## Where Things Stand
 
 At the end of this phase, here's what exists:
