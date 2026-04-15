@@ -181,4 +181,4 @@ The networking setup is where most of the complexity lives — and where most of
 
 ---
 
-*This is post 2 of an ongoing series. [Start from the beginning](https://mattvirtually-source.github.io/homelab-blog/post-01-the-vision/) or [view all posts in this series](https://mattvirtually-source.github.io/homelab-blog/).*
+*This is post 2 of an ongoing series. [Start from the beginning](https://mattvirtually-source.github.io/homelab-blog/posts/post-01-the-vision/) or [view all posts in this series](https://mattvirtually-source.github.io/homelab-blog/posts/).*

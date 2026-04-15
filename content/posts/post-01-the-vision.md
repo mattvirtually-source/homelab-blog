@@ -12,9 +12,9 @@ TocOpen: false
 
 I've worked with enterprise virtualization my entire IT career. Starting with Citrix XenServer in the small company I started in, later progressing to VMware, and even a stint with Hyper-V as a professional services engineer. I even know how to manage these environments adhering to modern DevOps practices (IaC). 
 
-After progressing out of operational IT in 2019, leaving my Enterprise Engineer role at a large law firm for a Technical Account Manager role at VMware, there were just technologies that I did not get a chance to touch. A lot of the DevOps I had practice with was scripting (PowerShell, Python) based leveraging Azure DevOps to automate the process. I didn't get to experience technologies like Terraform, or Ansible. And as more applications make the shift from VMs to Containers I have yet to experience on Kubernetes.
+After progressing out of operational IT in 2019, leaving my Enterprise Engineer role at a large law firm for a Technical Account Manager role at VMware, there were just technologies that I did not get a chance to touch. A lot of the DevOps I had practice with was scripting (PowerShell, Python) based leveraging Azure DevOps to automate the process. I didn't get to experience technologies like Terraform, or Ansible. And as more applications make the shift from VMs to Containers I have yet to gain experience on Kubernetes.
 
-As an Enterprise Solution Engineer at SHI I make it a point to understand these technologies and their use at a level that I'm beneficial to my customers in more technical conversations. I know their place in the tech stack. I have a high level understanding of how these technologies are leveraged. But I've always been a hands on learner, and my hands on experience in these areas is lacking.
+As an Enterprise Solution Engineer at SHI I make it a point to understand these technologies and their use at a level that I'm beneficial to my customers in more technical conversations. I know their place in the tech stack. I have a high level understanding of how these technologies are leveraged. But I've always been a hands on learner, and my experience in these areas is lacking.
 
 That gap bothered me enough to do something about it. So I'm building a home lab.
 
@@ -82,4 +82,4 @@ If you've done this before, [reach out](mailto:matt.virtually@gmail.com) — I'm
 
 ---
 
-*This is post 1 of an ongoing series. Start here or jump to the [series index](https://mattvirtually-source.github.io/homelab-blog/).*
+*This is post 1 of an ongoing series. Start here or jump to the [series index](https://mattvirtually-source.github.io/homelab-blog/posts/).*
