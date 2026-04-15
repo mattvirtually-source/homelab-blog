@@ -129,22 +129,7 @@ The second M.2 drive (512 GB) was left completely unpartitioned at this stage. I
 
 ### Post-Install Basics
 
-After the three-node install, a few immediate housekeeping steps before touching anything else:
-
-```bash
-# Disable the enterprise repo (requires paid subscription) and enable no-subscription
-sed -i 's/^deb/# deb/' /etc/apt/sources.list.d/pve-enterprise.list
-echo "deb http://download.proxmox.com/debian/pve bookworm pve-no-subscription" \
-  > /etc/apt/sources.list.d/pve-no-sub.list
-
-# Update
-apt update && apt full-upgrade -y
-
-# Install useful tools
-apt install -y htop iotop net-tools ethtool vim
-```
-
-Repeat on all three nodes. I keep them named simply: `node01`, `node02`, `node03` — with matching hostnames and sequential IPs on the management network. Simple naming goes a long way in a lab where you're SSHing into things constantly.
+I keep them named simply: `node01`, `node02`, `node03` with matching hostnames and sequential IPs on the management network. Simple naming goes a long way in a lab where you're SSHing into things constantly.
 
 ---
 
