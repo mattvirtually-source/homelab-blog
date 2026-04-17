@@ -92,4 +92,4 @@ If you've done this before, [reach out](mailto:matt.virtually@gmail.com). I'm in
 
 ---
 
-*This is post 1 of an ongoing series. [View all posts in this series](/posts/).*
+*This is post 1 of an ongoing series. [View all posts in this series](/homelab-blog/posts/).*

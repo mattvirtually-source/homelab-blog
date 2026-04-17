@@ -182,4 +182,4 @@ The networking setup is where most of the complexity lives, and where most of my
 
 ---
 
-*This is post 2 of an ongoing series. [Start from the beginning](/posts/post-01-the-vision/) or [view all posts in this series](/posts/).*
+*This is post 2 of an ongoing series. [Start from the beginning](/homelab-blog/posts/post-01-the-vision/) or [view all posts in this series](/homelab-blod/posts/).*
