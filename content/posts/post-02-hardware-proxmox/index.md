@@ -10,17 +10,17 @@ showToc: true
 TocOpen: false
 ---
 
-The first decision you make in a home lab tends to be the one that constrains everything else: what hardware are you running this on? For me, that decision sat at the intersection of three competing constraints: compute density, power consumption, and budget. The answer ended up being three small boxes on a small rack, and I don't regret it.
+The first decision you make in a home lab tends to be the one that constrains everything else: what hardware are you running this on? For me, that decision sat at the intersection of three competing constraints: compute density, power consumption, and budget. The answer ended up being three mini PCs on a small rack, and I don't regret it.
 
 ---
 
 ## Why Not Rack Servers?
 
-The traditional home lab path is second-hand enterprise gear, Dell PowerEdge R720s, HPE ProLiant DL380s, SuperMicro 2U nodes. You can buy these for a few hundred dollars each on eBay, and the specs are genuinely impressive: dual-socket Xeons, 256+ GB RAM, redundant power supplies, iDRAC/iLO for out-of-band management, 10 GbE onboard.
+The traditional home lab path is second-hand enterprise gear: Dell PowerEdge R720s, HPE ProLiant DL380s, SuperMicro nodes. You can buy these for a few hundred dollars each on eBay, and the specs are genuinely impressive: dual-socket Xeons, 256+ GB RAM, redundant power supplies, iDRAC/iLO for out-of-band management, 10 GbE onboard.
 
-Basically a few generation old versions of servers I sell every day.
+Basically a few generations old versions of servers I sell every day.
 
-The problem is what you pay for those specs in ways that don't show up on the eBay listing. A single R730 under load draws 300–400 watts. Three of them, running 24/7, adds roughly $150–200/month to the power bill depending on where you live. I have solar power, and while the sun shines in Phoenix most days, it doesn't at night. Add the noise that makes them incompatible with anything resembling a living space, and the total cost of ownership climbs fast.
+The problem is what you pay for those specs in ways that don't show up on the eBay listing. A single R730 under load draws 300–400 watts. Three of them, running 24/7, add roughly $150–200/month to the power bill depending on where you live. I have solar power, and while the sun shines in Phoenix most days, it doesn't at night. Add the noise that makes these servers incompatible with anything resembling a living space, and the total cost of ownership climbs fast.
 
 What I wanted was a cluster I could run continuously, in my home office, without an electricity bill that my household would notice. That shifted the calculus toward mini PCs.
 
@@ -28,7 +28,7 @@ What I wanted was a cluster I could run continuously, in my home office, without
 
 ## The GMKtec NucBox M5 Ultra
 
-After a few weeks of research, I landed on the [GMKtec NucBox M5 Ultra](https://www.gmktec.com). Three units, each configured with:
+After a few weeks of research, I landed on the [GMKtec NucBox M5 Ultra](https://www.gmktec.com). Three units procured from Amazon, each configured with:
 
 | Component | Spec |
 |-----------|------|
@@ -46,9 +46,9 @@ The spec that closed the deal was the dual 2.5 GbE NICs. Most mini PCs at this p
 
 The Ryzen 7 7730U is an 8-core, 16-thread Zen 3 processor. It supports AMD-V (AMD's hardware virtualization extension, equivalent to Intel VT-x), and IOMMU for PCI passthrough when enabled in BIOS.
 
-One thing worth knowing before you boot a fresh Proxmox install on any AMD consumer CPU: **SVM Mode is disabled by default in the BIOS**. Without it, KVM virtualization won't work. The setting is buried under Advanced → CPU Configuration on the M5 Ultra's firmware. It took me longer to find it than it should have. It's labeled "SVM Mode" rather than anything that immediately reads as "virtualization."
+One thing worth knowing before you boot a fresh Proxmox install on any AMD consumer CPU: **SVM Mode is disabled by default in the BIOS**. Without it, KVM virtualization won't work. The setting is buried under Advanced → CPU Configuration on the M5 Ultra's firmware. It's labeled "SVM Mode" rather than anything that immediately reads as "virtualization."
 
-Enable SVM Mode before you do anything else. Then verify it from the Proxmox shell:
+Enable SVM Mode before you do anything else. After install, verify it from the Proxmox shell:
 
 ```bash
 grep -e 'svm' /proc/cpuinfo | head -1
@@ -65,7 +65,7 @@ At idle, each M5 Ultra draws approximately 8–12 watts. Under moderate virtuali
 I'll be honest about what I gave up:
 
 - **No out-of-band management.** There's no IPMI, iDRAC, or iLO equivalent here. If a node becomes completely unresponsive, I need physical access. For a home lab, that's fine. For anything resembling production, it would be a problem.
-- **DDR4, not DDR5.** The 7730U is a Barcelo-R chip (Zen 3 refresh on a 6nm node), which predates the Zen 4 transition to DDR5. Not a limitation for this use case, but worth knowing.
+- **DDR4, not DDR5.** The 7730U is a Barcelo-R chip (Zen 3 refresh on a 6nm node), which predates the Zen 4 transition to DDR5. Not a limitation for this use case, but worth knowing. It may also be a quiet cost advantage if I need to expand to 64 GB later. With ongoing RAM shortages driven by AI hardware demand, DDR5 has become significantly more expensive.
 - **PCIe Gen 3, not Gen 4.** NVMe throughput is capped accordingly. In practice, sequential reads around 3,500 MB/s and writes around 2,600 MB/s, which is more than sufficient for a Ceph-backed lab cluster.
 
 ---
