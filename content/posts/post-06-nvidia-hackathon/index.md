@@ -184,7 +184,7 @@ SLA compliance came in at around 94%. Not bad for a greedy algorithm, but not 10
 
 Load distribution was also uneven. Some technicians ended the day with deep queues while others with matching skills sat partially idle. Aggregate drive time across the fleet totaled around 377 minutes.
 
-The question became obvious: what does an optimal solution look like on this dataset? And we had H100s in front of us. NVIDIA makes a GPU-accelerated solver for exactly this class of problem.
+The question became obvious: what does an optimal solution look like on this dataset? And we had H100s in front of us. NVIDIA makes a GPU-accelerated solver for exactly this class of problem. More on that to come, but for now we had a demo-worthy solution.
 
 ---
 
@@ -194,7 +194,7 @@ The third day of the event was demo day. All nine teams presented their solution
 
 For Team 6, Tyler ran the presentation and walked through the use case: the problem field service organizations face, the inputs and outputs, and why it was a strong fit for the NVIDIA stack. I ran the live demo, showing the dispatch system working end-to-end: data in, optimized schedule out, NIM-generated messages, Google Maps links, SLA compliance status. Kindra closed with the architecture and documentation, covering how the solution was built on top of the NVIDIA blueprint and what each technology layer was doing.
 
-Team 6 placed second.
+Team 6 took second place. Out of nine teams, on our first time working together, that felt like a real win.
 
 ---
 
